@@ -1,7 +1,7 @@
 from turtle import Screen, Turtle
 import time
 
-
+MOVE_DISTANCE = 20
 class Snake():
 
     # What will happen when we initialize a new snake object
@@ -9,6 +9,8 @@ class Snake():
         self.segments = []
         self.x_axis = 0
         self.y_axis = 0
+        self.create_snake()
+
 
     def create_snake(self):
         for i in range(3):
@@ -33,5 +35,4 @@ class Snake():
                 # Move the current segment to the position of the segment in front of it.
                 self.segments[seg_num].goto(new_x, new_y)
             self.segments[0].forward(20)
-
 

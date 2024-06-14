@@ -3,29 +3,22 @@
 # TODO 3: Control the snake
 
 from turtle import Screen, Turtle
+import time
+from snake import Snake
 
 screen = Screen()
 screen.setup(600, 600)
 screen.bgcolor("black")
 screen.title("Snake Game")
+screen.tracer(0)
 
-x_axis = 0
-y_axis = 0
-all_snakes = []
+snake = Snake()
 
-starting_positions = [(0,0),(-20,0),(-40,0)]
-
-for i in range(3):
-    new_snake = Turtle(shape="square")
-    new_snake.color("white")
-    new_snake.penup()
-    new_snake.goto(x=x_axis, y=y_axis)
-    x_axis -= 20
-# for position in starting_positions:
-#     new_segment = Turtle("square")
-#     new_segment.color("white")
-#     new_segment.goto(position)
-
+game_is_on = True
+while game_is_on:
+    screen.update()
+    time.sleep(0.1)
+    snake.move()
 
 
 screen.exitonclick()

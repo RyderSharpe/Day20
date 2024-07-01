@@ -1,17 +1,24 @@
 from turtle import Screen, Turtle
 import time
 
+# Constants
 MOVE_DISTANCE = 20
-class Snake():
+UP = 90
+DOWN = 270
+LEFT = 180
+RIGHT = 0
 
+class Snake():
     # What will happen when we initialize a new snake object
     def __init__(self):
         self.segments = []
         self.x_axis = 0
         self.y_axis = 0
         self.create_snake()
+        self.head = self.segments[0]
 
 
+    # Create Snake
     def create_snake(self):
         for i in range(3):
             new_segment = Turtle(shape="square")
@@ -21,11 +28,8 @@ class Snake():
             self.x_axis -= 20
             self.segments.append(new_segment)
 
-    ## Moves snake ##
+    # Gets snake to automatically move forwards
     def move(self):
-        # Gets snake to automatically move forwards
-        game_is_on = True
-        while game_is_on:
             # Move the segments in reverse order
             for seg_num in range(len(self.segments) - 1, 0, -1):  # range(start=2, stop=0, step=-1)
                 # Get the x coordinates of the segment in front.
@@ -34,5 +38,21 @@ class Snake():
                 new_y = self.segments[seg_num - 1].ycor()
                 # Move the current segment to the position of the segment in front of it.
                 self.segments[seg_num].goto(new_x, new_y)
-            self.segments[0].forward(20)
+            self.head.forward(MOVE_DISTANCE)
+
+    def up(self):
+        if self.head.heading() != DOWN:
+            self.head.setheading(UP)
+
+    def down(self):
+        if self.head.heading() != UP:
+            self.head.setheading(DOWN)
+
+    def left(self):
+        if self.head.heading() != RIGHT:
+            self.head.setheading(LEFT)
+
+    def right(self):
+        if self.head.heading() != LEFT:
+            self.head.setheading(RIGHT)
 
